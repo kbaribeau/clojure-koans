@@ -11,16 +11,16 @@
         (recur (dec n) (not acc)))))
 
 ;(defn recursive-reverse [coll]
-;  (if (= 0 (count coll)) 
+;  (if (empty? coll) 
 ;    []
 ;    (concat (recursive-reverse (drop 1 coll)) (take 1 coll))))
 
 (defn recursive-reverse [coll]
   (loop [coll coll
          acc []]
-    (if (= (count coll) 0)
+    (if (empty? coll)
       acc
-      (recur (drop 1 coll) (concat (take 1 coll) acc)))))
+      (recur (rest coll) (cons (first coll) acc)))))
 
 ;(defn factorial [n]
 ;  (if (= n 0)
@@ -30,7 +30,7 @@
 ;      (* n (factorial (dec n))))))
 
 (defn factorial [n]
-  (if (= n 0)
+  (if (zero? n)
     0
   (loop [n n
          acc 1]
