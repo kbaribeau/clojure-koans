@@ -10,13 +10,33 @@
         false
         (recur (dec n) (not acc)))))
 
+;(defn recursive-reverse [coll]
+;  (if (= 0 (count coll)) 
+;    []
+;    (concat (recursive-reverse (drop 1 coll)) (take 1 coll))))
+
 (defn recursive-reverse [coll]
-  (if (= 0 (count coll)) 
-    []
-    (concat (recursive-reverse (drop 1 coll)) (take 1 coll))))
+  (loop [coll coll
+         acc []]
+    (if (= (count coll) 0)
+      acc
+      (recur (drop 1 coll) (concat (take 1 coll) acc)))))
+
+;(defn factorial [n]
+;  (if (= n 0)
+;    0
+;    (if (= n 1)
+;      1
+;      (* n (factorial (dec n))))))
 
 (defn factorial [n]
-  __)
+  (if (= n 0)
+    0
+  (loop [n n
+         acc 1]
+      (if (= n 1)
+        acc
+        (recur (dec n) (* n acc))))))
 
 (meditations
   "Recursion ends with a base case"
